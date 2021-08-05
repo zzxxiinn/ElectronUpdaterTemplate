@@ -1,0 +1,23 @@
+{
+  "name": "electron-updater-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzxxiinn/ElectronUpdaterTemplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zzxxiinn/ElectronUpdaterTemplate/issues"
+  },
+  "homepage": "https://github.com/zzxxiinn/ElectronUpdaterTemplate#readme",
+  "devDependencies": {
+    "electron": "^13.1.8"
+  }
+}
