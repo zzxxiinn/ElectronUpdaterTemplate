@@ -1,64 +1,50 @@
 import { autoUpdater } from "electron-updater";
-import { dialog } from "electron";
 import ElectronLog from "electron-log";
+import { app } from "electron";
 
 export function registerUpdaterEvent(): void {
-  autoUpdater.autoDownload = false;
+  const log = ElectronLog.create("updaterLogger");
+  log.transports.file.fileName = "updater.log";
+  console.log(app.getPath("userData"));
+  log.info("userData");
 
-  // Emitted when checking if an update has started.
+  autoUpdater.logger = log;
   autoUpdater.on("checking-for-update", () => {
-    ElectronLog.info("[updater.checking-for-update] Checking for update...");
+    log.info("-------------------------------");
+    log.info("[updater.checking-for-update] Checking for update...");
   });
 
   autoUpdater.on("update-available", (info) => {
-    ElectronLog.info(`[updater.update-not-available] ${info}`);
-    dialog
-      .showMessageBox({
-        type: "info",
-        title: "Found Updates: " + info.version,
-        message: "Found updates, do you want update now?",
-        buttons: ["Sure", "No"],
-      })
-      .then((value) => {
-        if (value.response === 0) {
-          autoUpdater.downloadUpdate();
-        }
-      });
+    log.info(`[updater.update-available]`, info);
+    autoUpdater.downloadUpdate().then(() => log.info("download start"));
   });
 
   autoUpdater.on("update-not-available", (info) => {
-    ElectronLog.info(`[updater.update-not-available] ${info}`);
-    dialog.showMessageBox({
-      title: "No Updates",
-      message: "Current version is up-to-date.",
-    });
+    log.info(`[updater.update-not-available]`, info);
   });
 
   autoUpdater.on("error", (err) => {
-    ElectronLog.error(`[updater.update-not-available] ${err}`);
-    dialog.showErrorBox(
-      "Error: ",
-      err == null ? "unknown" : (err.stack || err).toString()
-    );
-    // dialog.showErrorBox('Error: ', '自动更新出错')
+    log.error(`[updater.update-error]`, err);
+  });
+
+  autoUpdater.on("download-progress", (progressObj) => {
+    let log_message = "Download speed: " + progressObj.bytesPerSecond;
+    log_message = log_message + " - Downloaded " + progressObj.percent + "%";
+    log_message =
+      log_message +
+      " (" +
+      progressObj.transferred +
+      "/" +
+      progressObj.total +
+      ")";
+    log.info(log_message);
   });
 
   autoUpdater.on("update-downloaded", (info) => {
-    ElectronLog.info("update-downloaded: ", info);
-    dialog
-      .showMessageBox({
-        title: "Install Updates",
-        message: "Updates downloaded, application will be quit for update...",
-      })
-      .then(() => {
-        setImmediate(() => autoUpdater.quitAndInstall());
-      });
+    log.info("update-downloaded: ", info);
   });
-}
 
-// export this to MenuItem click callback
-export function checkForUpdates(): void {
-  // updater = menuItem
-  // updater.enabled = false
-  autoUpdater.checkForUpdates();
+  autoUpdater.checkForUpdates().then(() => {
+    log.info("checking for updates");
+  });
 }

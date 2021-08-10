@@ -24,7 +24,7 @@ module.exports = {
           // eslint-disable-next-line no-template-curly-in-string
           artifactName: "${productName}-${os}-${version}-${arch}.${ext}",
           category: "public.app-category.developer-tools",
-          icon: "build/icons/icon.icns",
+          // icon: "build/icons/icon.icns",
           type: "development",
           darkModeSupport: false,
         },
@@ -53,14 +53,14 @@ module.exports = {
         linux: {
           target: [
             { target: "AppImage", arch: ["x64"] },
-            { target: "tar.gz", arch: ["x64"] },
-            { target: "deb", arch: ["x64", "armv7l"] },
-            { target: "rpm", arch: ["x64"] },
+            // { target: "tar.gz", arch: ["x64"] },
+            // { target: "deb", arch: ["x64", "armv7l"] },
+            // { target: "rpm", arch: ["x64"] },
             // { target: 'snap', arch: ['x64'] }
             // { target: 'pacman', arch: ['x64'] }
           ],
           category: "Development",
-          icon: "build/icons/icon.icns",
+          // icon: "build/icons/icon.icns",
         },
         publish: [
           {
