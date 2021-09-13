@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "electron": "13.1.9",
+    "electron": "14.0.1",
     "electron-log": "^4.4.1",
     "electron-updater": "^4.3.9",
     "vue": "^3.0.0"
