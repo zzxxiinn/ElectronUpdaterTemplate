@@ -14,7 +14,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "3.18.0",
     "electron": "13.1.9",
     "electron-log": "^4.4.1",
     "electron-updater": "^4.3.9",
