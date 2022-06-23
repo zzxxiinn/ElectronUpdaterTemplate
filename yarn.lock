@@ -3366,6 +3366,11 @@ core-js-compat@^3.14.0, core-js-compat@^3.16.0, core-js-compat@^3.6.5:
     browserslist "^4.16.6"
     semver "7.0.0"
 
+core-js@3.23.2:
+  version "3.23.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.23.2.tgz#e07a60ca8b14dd129cabdc3d2551baf5a01c76f0"
+  integrity sha512-ELJOWxNrJfOH/WK4VJ3Qd+fOqZuOuDNDJz0xG6Bt4mGg2eO/UT9CljCrbqDGovjLKUrGajEEBcoTOc0w+yBYeQ==
+
 core-js@^3.6.5:
   version "3.16.0"
   resolved "https://registry.nlark.com/core-js/download/core-js-3.16.0.tgz#1d46fb33720bc1fa7f90d20431f36a5540858986"
